@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c098968e8eb4630b702cc6da42fc1c6" Name="Diagram1">
+        <EntityTypeShape EntityType="TestDBModel.Answer" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.AnswerInQuestion" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.Group" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.GroupIndex" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.GroupName" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.Human" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.ImageProfile" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.Lecture" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.Question" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.Role" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.Score" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.Subject" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.Test" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.TestScore" Width="1.5" PointX="9.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDBModel.User" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="TestDBModel.FK_AnswerInQuestion_Answer" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_AnswerInQuestion_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_Group_GroupIndex" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_Group_GroupName" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_Human_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_Human_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_User_Human" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_User_ImageProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_Lecture_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_TestScore_Score" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_Test_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_TestScore_Test" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.FK_TestScore_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.QuestionInTest" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDBModel.SubjectInGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
