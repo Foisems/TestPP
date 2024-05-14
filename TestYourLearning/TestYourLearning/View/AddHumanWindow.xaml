@@ -1,0 +1,136 @@
+﻿<Window x:Class="TestYourLearning.View.AddHumanWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestYourLearning.View"
+        mc:Ignorable="d"
+        Title="AddHumanWindow"
+        Height="900"
+        Width="600"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#faf0e6">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="470" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label x:Name="titleLabel"
+               Content="Добавить студента"
+               Grid.Column="1"
+               Margin="20, 30"
+               HorizontalAlignment="Center"
+               FontSize="35"
+               FontFamily="Sitka Display" />
+        <Label Content="Введите фамилию:"
+               Grid.Row="1"
+               Grid.Column="1"
+               FontSize="25"
+               FontFamily="Sitka Display" />
+        <TextBox x:Name="surnameTB"
+                 Grid.Row="1"
+                 FontSize="20"
+                 Grid.Column="1"
+                 Margin="0, 40, 0 , 30"
+                 FontFamily="Sitka Display" />
+        <Label Content="Введите имя:"
+               Grid.Row="2"
+               Grid.Column="1"
+               FontSize="25"
+               FontFamily="Sitka Display" />
+        <TextBox x:Name="firstNameTB"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 FontSize="20"
+                 Margin="0, 40, 0 , 30"
+                 FontFamily="Sitka Display" />
+        <Label Content="Введите отчество:"
+               Grid.Row="3"
+               Grid.Column="1"
+               FontSize="25"
+               FontFamily="Sitka Display" />
+        <TextBox x:Name="patronymicTB"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 FontSize="20"
+                 Margin="0, 40, 0 , 30"
+                 FontFamily="Sitka Display" />
+        <Label x:Name="labelSubject"
+               Content="Группа:"
+               Grid.Row="4"
+               Grid.Column="1"
+               FontSize="25"
+               FontFamily="Sitka Display" />
+        <ComboBox x:Name="ComboGroup"
+                  ItemsSource="{Binding Group}"
+                  Grid.Column="1"
+                  Grid.Row="4"
+                  FontSize="20"
+                  Margin="0,38">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} - {1}">
+                                <Binding Path="GroupName.Name" />
+                                <Binding Path="GroupIndex.Index" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="ComboTeacher"
+                  Visibility="Collapsed"
+                  DisplayMemberPath="Name"
+                  SelectedItem="{Binding Subject}"
+                  Grid.Column="1"
+                  Grid.Row="4"
+                  FontSize="20"
+                  Margin="0,38" />
+        <Label Content="Введите логин:"
+               Grid.Row="5"
+               Grid.Column="1"
+               FontSize="25"
+               FontFamily="Sitka Display" />
+        <TextBox x:Name="loginTB"
+                 Grid.Row="5"
+                 FontSize="20"
+                 Grid.Column="1"
+                 Margin="0, 40, 0 , 30"
+                 FontFamily="Sitka Display" />
+        <Label Content="Введите пароль:"
+               Grid.Row="6"
+               Grid.Column="1"
+               FontSize="25"
+               FontFamily="Sitka Display" />
+        <TextBox x:Name="passwordTB"
+                 Grid.Row="6"
+                 FontSize="20"
+                 Grid.Column="1"
+                 Margin="0, 40, 0 , 30"
+                 FontFamily="Sitka Display" />
+
+        <Button x:Name="addHumanBtn"
+                Content="Добавить"
+                Grid.Row="7"
+                Grid.ColumnSpan="2"
+                Grid.Column="1"
+                FontSize="25"
+                Margin="350, 20, 20 , 20"
+                FontFamily="Sitka Display"
+                Click="addHumanBtn_Click" />
+    </Grid>
+</Window>

@@ -18,7 +18,7 @@ namespace TestYourLearning.Model
         public Question()
         {
             this.AnswerInQuestion = new HashSet<AnswerInQuestion>();
-            this.Test = new HashSet<Test>();
+            this.QuestionInTest = new HashSet<QuestionInTest>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace TestYourLearning.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnswerInQuestion> AnswerInQuestion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Test> Test { get; set; }
+        public virtual ICollection<QuestionInTest> QuestionInTest { get; set; }
     }
 }

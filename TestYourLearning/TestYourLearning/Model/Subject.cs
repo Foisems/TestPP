@@ -20,7 +20,6 @@ namespace TestYourLearning.Model
             this.Human = new HashSet<Human>();
             this.Lecture = new HashSet<Lecture>();
             this.Test = new HashSet<Test>();
-            this.Group = new HashSet<Group>();
         }
     
         public int Id { get; set; }
@@ -32,7 +31,5 @@ namespace TestYourLearning.Model
         public virtual ICollection<Lecture> Lecture { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Test> Test { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group> Group { get; set; }
     }
 }

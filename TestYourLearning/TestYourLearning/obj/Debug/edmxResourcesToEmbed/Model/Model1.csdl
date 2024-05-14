@@ -29,7 +29,6 @@
     <NavigationProperty Name="GroupIndex" Relationship="Self.FK_Group_GroupIndex" FromRole="Group" ToRole="GroupIndex" />
     <NavigationProperty Name="GroupName" Relationship="Self.FK_Group_GroupName" FromRole="Group" ToRole="GroupName" />
     <NavigationProperty Name="Human" Relationship="Self.FK_Human_Group" FromRole="Group" ToRole="Human" />
-    <NavigationProperty Name="Subject" Relationship="Self.SubjectInGroup" FromRole="Group" ToRole="Subject" />
   </EntityType>
   <EntityType Name="GroupIndex">
     <Key>
@@ -86,7 +85,20 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="AnswerInQuestion" Relationship="Self.FK_AnswerInQuestion_Question" FromRole="Question" ToRole="AnswerInQuestion" />
-    <NavigationProperty Name="Test" Relationship="Self.QuestionInTest" FromRole="Question" ToRole="Test" />
+    <NavigationProperty Name="QuestionInTest" Relationship="Self.FK_QuestionInTest_Question" FromRole="Question" ToRole="QuestionInTest" />
+  </EntityType>
+  <EntityType Name="QuestionInTest">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdQuestion" />
+      <PropertyRef Name="IdTest" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdQuestion" Type="Int32" Nullable="false" />
+    <Property Name="IdTest" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_QuestionInTest_Question" FromRole="QuestionInTest" ToRole="Question" />
+    <NavigationProperty Name="Test" Relationship="Self.FK_QuestionInTest_Test" FromRole="QuestionInTest" ToRole="Test" />
+    <Property Name="Number" Type="Int32" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -113,7 +125,6 @@
     <NavigationProperty Name="Human" Relationship="Self.FK_Human_Subject" FromRole="Subject" ToRole="Human" />
     <NavigationProperty Name="Lecture" Relationship="Self.FK_Lecture_Subject" FromRole="Subject" ToRole="Lecture" />
     <NavigationProperty Name="Test" Relationship="Self.FK_Test_Subject" FromRole="Subject" ToRole="Test" />
-    <NavigationProperty Name="Group" Relationship="Self.SubjectInGroup" FromRole="Subject" ToRole="Group" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -132,9 +143,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdSubject" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="QuestionInTest" Relationship="Self.FK_QuestionInTest_Test" FromRole="Test" ToRole="QuestionInTest" />
     <NavigationProperty Name="Subject" Relationship="Self.FK_Test_Subject" FromRole="Test" ToRole="Subject" />
     <NavigationProperty Name="TestScore" Relationship="Self.FK_TestScore_Test" FromRole="Test" ToRole="TestScore" />
-    <NavigationProperty Name="Question" Relationship="Self.QuestionInTest" FromRole="Test" ToRole="Question" />
   </EntityType>
   <EntityType Name="TestScore">
     <Key>
@@ -271,6 +282,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_QuestionInTest_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="QuestionInTest" Type="Self.QuestionInTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionInTest">
+        <PropertyRef Name="IdQuestion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionInTest_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="QuestionInTest" Type="Self.QuestionInTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionInTest">
+        <PropertyRef Name="IdTest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -331,14 +366,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="QuestionInTest">
-    <End Role="Question" Type="Self.Question" Multiplicity="*" />
-    <End Role="Test" Type="Self.Test" Multiplicity="*" />
-  </Association>
-  <Association Name="SubjectInGroup">
-    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
-    <End Role="Group" Type="Self.Group" Multiplicity="*" />
-  </Association>
   <EntityContainer Name="TestDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Answer" EntityType="Self.Answer" />
     <EntitySet Name="AnswerInQuestion" EntityType="Self.AnswerInQuestion" />
@@ -349,6 +376,7 @@
     <EntitySet Name="ImageProfile" EntityType="Self.ImageProfile" />
     <EntitySet Name="Lecture" EntityType="Self.Lecture" />
     <EntitySet Name="Question" EntityType="Self.Question" />
+    <EntitySet Name="QuestionInTest" EntityType="Self.QuestionInTest" />
     <EntitySet Name="Role" EntityType="Self.Role" />
     <EntitySet Name="Score" EntityType="Self.Score" />
     <EntitySet Name="Subject" EntityType="Self.Subject" />
@@ -392,6 +420,14 @@
       <End Role="Subject" EntitySet="Subject" />
       <End Role="Lecture" EntitySet="Lecture" />
     </AssociationSet>
+    <AssociationSet Name="FK_QuestionInTest_Question" Association="Self.FK_QuestionInTest_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="QuestionInTest" EntitySet="QuestionInTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionInTest_Test" Association="Self.FK_QuestionInTest_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="QuestionInTest" EntitySet="QuestionInTest" />
+    </AssociationSet>
     <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
       <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
@@ -411,14 +447,6 @@
     <AssociationSet Name="FK_TestScore_User" Association="Self.FK_TestScore_User">
       <End Role="User" EntitySet="User" />
       <End Role="TestScore" EntitySet="TestScore" />
-    </AssociationSet>
-    <AssociationSet Name="QuestionInTest" Association="Self.QuestionInTest">
-      <End Role="Question" EntitySet="Question" />
-      <End Role="Test" EntitySet="Test" />
-    </AssociationSet>
-    <AssociationSet Name="SubjectInGroup" Association="Self.SubjectInGroup">
-      <End Role="Subject" EntitySet="Subject" />
-      <End Role="Group" EntitySet="Group" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

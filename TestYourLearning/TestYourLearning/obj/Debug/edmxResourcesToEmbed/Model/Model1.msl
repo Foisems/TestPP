@@ -81,6 +81,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="QuestionInTest">
+      <EntityTypeMapping TypeName="TestDBModel.QuestionInTest">
+        <MappingFragment StoreEntitySet="QuestionInTest">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
+          <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Role">
       <EntityTypeMapping TypeName="TestDBModel.Role">
         <MappingFragment StoreEntitySet="Role">
@@ -147,21 +157,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="QuestionInTest" TypeName="TestDBModel.QuestionInTest" StoreEntitySet="QuestionInTest">
-      <EndProperty Name="Question">
-        <ScalarProperty Name="Id" ColumnName="IdQuestion" />
-      </EndProperty>
-      <EndProperty Name="Test">
-        <ScalarProperty Name="Id" ColumnName="IdTest" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="SubjectInGroup" TypeName="TestDBModel.SubjectInGroup" StoreEntitySet="SubjectInGroup">
-      <EndProperty Name="Subject">
-        <ScalarProperty Name="Id" ColumnName="IdSubject" />
-      </EndProperty>
-      <EndProperty Name="Group">
-        <ScalarProperty Name="Id" ColumnName="IdGroup" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

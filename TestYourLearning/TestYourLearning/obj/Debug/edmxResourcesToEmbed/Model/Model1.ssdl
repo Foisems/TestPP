@@ -74,11 +74,14 @@
   </EntityType>
   <EntityType Name="QuestionInTest">
     <Key>
+      <PropertyRef Name="Id" />
       <PropertyRef Name="IdQuestion" />
       <PropertyRef Name="IdTest" />
     </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdQuestion" Type="int" Nullable="false" />
     <Property Name="IdTest" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -100,14 +103,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SubjectInGroup">
-    <Key>
-      <PropertyRef Name="IdSubject" />
-      <PropertyRef Name="IdGroup" />
-    </Key>
-    <Property Name="IdSubject" Type="int" Nullable="false" />
-    <Property Name="IdGroup" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -131,7 +126,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdUser" Type="int" Nullable="false" />
     <Property Name="IdTest" Type="int" Nullable="false" />
     <Property Name="IdScore" Type="int" Nullable="false" />
@@ -255,18 +250,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SubjectInGroup_Subject">
-    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
-    <End Role="SubjectInGroup" Type="Self.SubjectInGroup" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Subject">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SubjectInGroup">
-        <PropertyRef Name="IdSubject" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Test_Subject">
     <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
     <End Role="Test" Type="Self.Test" Multiplicity="*" />
@@ -276,18 +259,6 @@
       </Principal>
       <Dependent Role="Test">
         <PropertyRef Name="IdSubject" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TestInGroup_Group">
-    <End Role="Group" Type="Self.Group" Multiplicity="1" />
-    <End Role="SubjectInGroup" Type="Self.SubjectInGroup" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Group">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SubjectInGroup">
-        <PropertyRef Name="IdGroup" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -377,7 +348,6 @@
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SubjectInGroup" EntityType="Self.SubjectInGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TestScore" EntityType="Self.TestScore" Schema="dbo" store:Type="Tables" />
@@ -418,17 +388,9 @@
       <End Role="Test" EntitySet="Test" />
       <End Role="QuestionInTest" EntitySet="QuestionInTest" />
     </AssociationSet>
-    <AssociationSet Name="FK_SubjectInGroup_Subject" Association="Self.FK_SubjectInGroup_Subject">
-      <End Role="Subject" EntitySet="Subject" />
-      <End Role="SubjectInGroup" EntitySet="SubjectInGroup" />
-    </AssociationSet>
     <AssociationSet Name="FK_Test_Subject" Association="Self.FK_Test_Subject">
       <End Role="Subject" EntitySet="Subject" />
       <End Role="Test" EntitySet="Test" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TestInGroup_Group" Association="Self.FK_TestInGroup_Group">
-      <End Role="Group" EntitySet="Group" />
-      <End Role="SubjectInGroup" EntitySet="SubjectInGroup" />
     </AssociationSet>
     <AssociationSet Name="FK_TestScore_Score" Association="Self.FK_TestScore_Score">
       <End Role="Score" EntitySet="Score" />

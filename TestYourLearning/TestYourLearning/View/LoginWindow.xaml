@@ -10,7 +10,8 @@
         Width="400"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Background="#faf0e6">
+        Background="#faf0e6"
+        Closing="Window_Closing">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition />

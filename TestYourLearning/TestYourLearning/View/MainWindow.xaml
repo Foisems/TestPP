@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestYourLearning"
+        xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="800" Width="1200"
+        Title="Главная" Height="800" Width="1200"
         MinHeight="800" MinWidth="1200"
         Closing="Window_Closing">
 
@@ -171,18 +172,43 @@
                     <TabItem x:Name="subjectTabItem"
                              Header="Предметы">
                         <Grid>
-                            <Grid>
+                            <Grid x:Name="subgectGrid">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="300"  />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="80"/>
                                     <RowDefinition />
-                                </Grid.RowDefinitions>
+                            </Grid.RowDefinitions>
 
+                            <Button x:Name="btnNewUpdateSubject"
+                                    Grid.Column="1"
+                                    Width="100"
+                                    Grid.ColumnSpan="2"
+                                    Margin="140, 20"
+                                    HorizontalAlignment="Left"
+                                    Content="Обновить"
+                                    FontSize="20"
+                                    Click="btnNewUpdateSubject_Click" />
 
-                                <DataGrid Grid.Row="1"
+                            <Label Content="Поиск по названию предмета"
+                                   Margin="20, 10"/>
+                                
+                            <TextBox x:Name="searchSubjectTB"
+                                     Margin="20, 10"
+                                     VerticalAlignment="Bottom"/>
+                            <Button x:Name="searchSubjectBtn"
+                                    Grid.Column="1"
+                                    Margin="10, 20, 200, 20"
+                                    Content="Поиск"
+                                    FontSize="20"
+                                    Click="searchSubjectBtn_Click" />
+                                
+                                
+
+                            <DataGrid Grid.Row="1"
                                           Grid.ColumnSpan="4"
                                           Margin="10"
                                           AutoGenerateColumns="False"
@@ -190,136 +216,477 @@
                                           IsReadOnly="True"
                                           SelectionMode="Single">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Название"
-                                                            Width="220"
-                                                            Binding="{Binding Name}" />
-                                        <DataGridTextColumn Header="Цена"
-                                                            Width="150"
-                                                            Binding="{Binding Price}" />
-                                        <DataGridTextColumn Header="Длительность"
-                                                            Width="250"
-                                                            Binding="{Binding Time}" />
-                                        <DataGridTextColumn  Header="Тип услуги"
-                                                             Width="*"
-                                                             Binding="{Binding TypeService.Name}" />
+                                    <DataGridTextColumn Header="Название"
+                                                        Width="350"
+                                                        Binding="{Binding Subject.Name}" />
+                                    <DataGridTextColumn Header="Фамилия преподователя"
+                                                        Width="150"
+                                                        Binding="{Binding Surname}" />
+                                    <DataGridTextColumn Header="Имя"
+                                                        Width="150"
+                                                        Binding="{Binding FirstName}" />
+                                    <DataGridTextColumn Header="Отчество"
+                                                        Width="150"
+                                                        Binding="{Binding Patronymic}" />
+                                    <DataGridTemplateColumn Width="150">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="btnOpenApp"
+                                                        FontSize="20"
+                                                        Click="btnOpenApp_Click">Просмотр</Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
 
                                     </DataGrid.Columns>
                                 </DataGrid>
+                                
+                                
                             </Grid>
+                        <Grid x:Name="lectureGrid" Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Button x:Name="btnUpdateSubject"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    Width="100"
+                                    Margin="150, 20"
+                                    HorizontalAlignment="Right"
+                                    Content="Обновить"
+                                    FontSize="20"
+                                    Click="btnUpdateSubject_Click" />
+                            <Button x:Name="btnBackSubject"
+                                    Grid.Column="2"
+                                    Width="100"
+                                    Margin="20"
+                                    HorizontalAlignment="Right"
+                                    Content="Назад"
+                                    FontSize="20"
+                                    Click="btnBackSubject_Click" />
+                            
+                            <Label Content="Предмет:"
+                                   FontSize="30"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                            <Label x:Name="subjectNameLabel"
+                                   Content="физика"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"
+                                   FontSize="30"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="140, 0, 0, 0"/>
+
+                            <Label Grid.Row="1"
+                                   Content="Лекции"
+                                   FontSize="30"
+                                   Margin="140, 0, 0, 0"/>
+
+                            <Button x:Name="btnAddLecture"
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                   VerticalAlignment="Top"
+                                    Height="28"
+                                    Width="230"
+                                    HorizontalAlignment="Left"
+                                    Content="Добавить лекцию"
+                                    FontSize="20"
+                                    Click="btnAddLecture_Click" />
+
+                            <DataGrid Grid.Row="1"
+                                      Grid.ColumnSpan="4"
+                                      Margin="10, 50, 10, 10"
+                                      AutoGenerateColumns="False"
+                                      Name="dataGridLecture"
+                                      IsReadOnly="True"
+                                      SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Название"
+                                                        Width="1*"
+                                                        Binding="{Binding Name}" />
+                                    <DataGridTemplateColumn Width="150">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="btnOpenLecture"
+                                                        FontSize="20"
+                                                        Click="btnOpenLecture_Click">Просмотр</Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Label Grid.Row="2"
+                                   Content="Тесты"
+                                   FontSize="30"
+                                   Margin="140, 0, 0, 0" />
+                            <Button x:Name="btnAddTest"
+                                    Grid.Column="1"
+                                    Grid.Row="2"
+                                    Height="28"
+                                    Width="230"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    Content="Добавить тест"
+                                    FontSize="20"
+                                    Click="btnAddTest_Click" />
+                            <DataGrid Grid.Row="2"
+                                      Grid.ColumnSpan="4"
+                                      Margin="10, 50, 10, 10"
+                                      AutoGenerateColumns="False"
+                                      Name="dataGridTests"
+                                      IsReadOnly="True"
+                                      SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Название"
+                                                        Width="1*"
+                                                        Binding="{Binding Name}" />
+
+                                    <DataGridTemplateColumn Width="150">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="btnOpenTest"
+                                                        FontSize="20"
+                                                        Click="btnOpenTest_Click">Пройти тест</Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </Grid>
+                        <Grid x:Name="lectureOpenGrid"
+                              Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="340"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="10*" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Button x:Name="btnUpdateLecture"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    Width="100"
+                                    Margin="150, 20"
+                                    HorizontalAlignment="Right"
+                                    Content="Обновить"
+                                    FontSize="20"
+                                    Click="btnUpdateLecture_Click" />
+                            <Button x:Name="btnBackLectures"
+                                    Grid.Column="2"
+                                    Width="100"
+                                    Margin="20"
+                                    HorizontalAlignment="Right"
+                                    Content="Назад"
+                                    FontSize="20"
+                                    Click="btnBackLectures_Click" />
+                            
+                            <Wpf:WebView2 x:Name="webview2"
+                                          Margin="10"
+                                          Grid.ColumnSpan="3"
+                                          Grid.Row="1"
+                                          ZoomFactor="1"/>
+                            <Button x:Name="btnDeleteLectures"
+                                    Grid.Column="2"
+                                    Grid.Row="2"
+                                    Margin="10"
+                                    HorizontalAlignment="Right"
+                                    Width="100"
+                                    Content="Удалить"
+                                    FontSize="20"
+                                    Click="btnDeleteLectures_Click" />
+                            <Button x:Name="btnEditLectures"
+                                    Grid.Column="2"
+                                    Grid.Row="2"
+                                    Margin="10"
+                                    HorizontalAlignment="Left"
+                                    Width="200"
+                                    Content="Редактировать"
+                                    FontSize="20"
+                                    Click="btnEditLectures_Click" />
+                        </Grid>
+                    </Grid>
                     </TabItem>
 
-                    <TabItem x:Name="clientTabItem"
-                             Header="Клиенты">
+                    <TabItem x:Name="scoreTabItem"
+                             Header="Журнал">
+                        <Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Поиск по фамилии студента"
+                                   Margin="20, 10" />
+
+                            <Button x:Name="btnUpdateScore"
+                                    Grid.Column="1"
+                                    Width="100"
+                                    Grid.ColumnSpan="2"
+                                    Margin="140, 20"
+                                    HorizontalAlignment="Left"
+                                    Content="Обновить"
+                                    FontSize="20"
+                                    Click="btnUpdateScore_Click" />
+
+                            <TextBox x:Name="searchScoreTB"
+                                     Margin="20, 10"
+                                     VerticalAlignment="Bottom" />
+                            <Button x:Name="searchScoreBtn"
+                                    Grid.Column="1"
+                                    Margin="10, 20, 200, 20"
+                                    Content="Поиск"
+                                    FontSize="20"
+                                    Click="searchScoreBtn_Click" />
+                            
+                           
+                            <DataGrid Grid.Row="1"
+                                      Grid.ColumnSpan="4"
+                                      Margin="10"
+                                      AutoGenerateColumns="False"
+                                      Name="dataGridScore"
+                                      IsReadOnly="True"
+                                      SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Фамилия"
+                                                        Width="150"
+                                                        Binding="{Binding User.Human.Surname}" />
+                                    <DataGridTextColumn Header="Имя"
+                                                        Width="150"
+                                                        Binding="{Binding User.Human.FirstName}" />
+                                    <DataGridTextColumn Header="Отчество"
+                                                        Width="150"
+                                                        Binding="{Binding User.Human.Patronymic}" />
+                                    <DataGridTextColumn Header="Группа"
+                                                        Width="100">
+                                        <DataGridTextColumn.Binding>
+                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                                <Binding Path="User.Human.Group.GroupName.Name" />
+                                                <Binding Path="User.Human.Group.GroupIndex.Index" />
+                                            </MultiBinding>
+                                        </DataGridTextColumn.Binding>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Название теста"
+                                                        Width="320"
+                                                        Binding="{Binding Test.Name}" />
+                                    <DataGridTextColumn Header="Оценка"
+                                                        Width="70"
+                                                        Binding="{Binding Score.Number}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Студенты"
+                             x:Name="studentsTabItem">
                         <Grid>
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Поиск по фамилии студента"
+                                   Margin="20, 10" />
+
+                            <Button x:Name="btnUpdateStudents"
+                                    Grid.Column="1"
+                                    Width="100"
+                                    Grid.ColumnSpan="2"
+                                    Margin="140, 20"
+                                    HorizontalAlignment="Left"
+                                    Content="Обновить"
+                                    FontSize="20"
+                                    Click="btnUpdateStudents_Click" />
+
+                            <TextBox x:Name="searchStudentsTB"
+                                     Margin="20, 10"
+                                     VerticalAlignment="Bottom" />
+                            <Button x:Name="searchStudentsBtn"
+                                    Grid.Column="1"
+                                    Margin="10, 20, 200, 20"
+                                    Content="Поиск"
+                                    FontSize="20"
+                                    Click="searchStudentsBtn_Click" />
+                            <Button x:Name="addStudentsBtn"
+                                    Grid.Column="2"
+                                    Margin="20"
+                                    Width="150"
+                                    HorizontalAlignment="Right"
+                                    Content="Добваить"
+                                    FontSize="20"
+                                    Click="addStudentsBtn_Click" />
+                            <Button x:Name="printStudentsBtn"
+                                    Grid.Column="2"
+                                    Margin="0, 20, 200, 20"
+                                    Width="100"
+                                    HorizontalAlignment="Right"
+                                    Content="Печать"
+                                    FontSize="20"
+                                    Click="printStudentsBtn_Click" />
 
 
-                                <DataGrid Grid.Row="1"
-                                          Grid.ColumnSpan="4"
-                                          Margin="10"
-                                          AutoGenerateColumns="False"
-                                          Name="dataGrid2"
-                                          IsReadOnly="True"
-                                          SelectionMode="Single">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Имя"
-                                                            Width="100"
-                                                            Binding="{Binding FirstName}" />
-                                        <DataGridTextColumn Header="Фамилия"
-                                                            Width="100"
-                                                            Binding="{Binding Surname}" />
-                                        <DataGridTextColumn  Header="Отчество"
-                                                             Width="100"
-                                                             Binding="{Binding Patronymic}" />
-                                        <DataGridTextColumn Header="Номер телефона"
-                                                            Width="100"
-                                                            Binding="{Binding PhoneNumber}" />
-                                        <DataGridTextColumn Header="Дата рождения"
-                                                            Width="*"
-                                                            Binding="{Binding BirthDate, StringFormat=d}" />
-
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </Grid>
+                            <DataGrid Grid.Row="1"
+                                      Grid.ColumnSpan="4"
+                                      Margin="10"
+                                      AutoGenerateColumns="False"
+                                      Name="dataGridStudents"
+                                      IsReadOnly="True"
+                                      SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Фамилия"
+                                                        Width="150"
+                                                        Binding="{Binding Human.Surname}" />
+                                    <DataGridTextColumn Header="Имя"
+                                                        Width="150"
+                                                        Binding="{Binding Human.FirstName}" />
+                                    <DataGridTextColumn Header="Отчество"
+                                                        Width="150"
+                                                        Binding="{Binding Human.Patronymic}" />
+                                    <DataGridTextColumn Header="Группа"
+                                                        Width="150">
+                                        <DataGridTextColumn.Binding>
+                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                                <Binding Path="Human.Group.GroupName.Name" />
+                                                <Binding Path="Human.Group.GroupIndex.Index" />
+                                            </MultiBinding>
+                                        </DataGridTextColumn.Binding>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Логин"
+                                                        Width="150"
+                                                        Binding="{Binding Login}" />
+                                    <DataGridTextColumn Header="Пароль"
+                                                        Width="150"
+                                                        Binding="{Binding Password}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
                         </Grid>
                     </TabItem>
-
-                    <TabItem Header="Сотрудники"
-                             x:Name="stafferTabItem">
+                <TabItem Header="Преподаватели"
+                         x:Name="teachersTabItem">
+                    <Grid>
                         <Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Button x:Name="addTeachersBtn"
+                                    Grid.Column="2"
+                                    Margin="20"
+                                    Width="150"
+                                    HorizontalAlignment="Right"
+                                    Content="Добваить"
+                                    FontSize="20"
+                                    Click="addTeachersBtn_Click" />
+                            <Button x:Name="printTeachersBtn"
+                                    Grid.Column="2"
+                                    Margin="0, 20, 200, 20"
+                                    Width="100"
+                                    HorizontalAlignment="Right"
+                                    Content="Печать"
+                                    FontSize="20"
+                                    Click="printTeachersBtn_Click" />
+
+                            <Label Content="Поиск по фамилии преподавателя"
+                                   Margin="20, 10"
+                                   Grid.ColumnSpan="2"/>
+
+                            <Button x:Name="btnUpdateTeachers"
+                                    Grid.Column="1"
+                                    Width="100"
+                                    Grid.ColumnSpan="2"
+                                    Margin="140, 20"
+                                    HorizontalAlignment="Left"
+                                    Content="Обновить"
+                                    FontSize="20"
+                                    Click="btnUpdateTeachers_Click" />
+
+                            <TextBox x:Name="searchTeachersTB"
+                                     Margin="20, 10"
+                                     VerticalAlignment="Bottom" />
+                            <Button x:Name="searchTeachersBtn"
+                                    Grid.Column="1"
+                                    Margin="10, 20, 200, 20"
+                                    Content="Поиск"
+                                    FontSize="20"
+                                    Click="searchTeachersBtn_Click" />
 
 
 
-                                <DataGrid Grid.Row="1"
-                                          Grid.ColumnSpan="4"
-                                          Margin="10"
-                                          AutoGenerateColumns="False"
-                                          Name="dataGrid3"
-                                          IsReadOnly="True"
-                                          SelectionMode="Single">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Имя"
-                                                            Width="100"
-                                                            Binding="{Binding FirstName}" />
-                                        <DataGridTextColumn Header="Фамилия"
-                                                            Width="100"
-                                                            Binding="{Binding Surname}" />
-                                        <DataGridTextColumn  Header="Отчество"
-                                                             Width="100"
-                                                             Binding="{Binding Patronymic}" />
-                                        <DataGridTextColumn Header="Номер телефона"
-                                                            Width="100"
-                                                            Binding="{Binding PhoneNumber}" />
-                                        <DataGridTextColumn Header="Должность"
-                                                            Width="200"
-                                                            Binding="{Binding Staff.Name}" />
-                                        <DataGridTextColumn  Header="Зарплата"
-                                                             Width="*"
-                                                             Binding="{Binding Staff.Salary}" />
-
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </Grid>
+                            <DataGrid Grid.Row="1"
+                                      Grid.ColumnSpan="4"
+                                      Margin="10"
+                                      AutoGenerateColumns="False"
+                                      Name="dataGridTeachers"
+                                      IsReadOnly="True"
+                                      SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Фамилия"
+                                                        Width="150"
+                                                        Binding="{Binding Human.Surname}" />
+                                    <DataGridTextColumn Header="Имя"
+                                                        Width="150"
+                                                        Binding="{Binding Human.FirstName}" />
+                                    <DataGridTextColumn Header="Отчество"
+                                                        Width="150"
+                                                        Binding="{Binding Human.Patronymic}" />
+                                    <DataGridTextColumn Header="Предмет"
+                                                        Width="330"
+                                                        Binding="{Binding Human.Subject.Name}" />
+                                    <DataGridTextColumn Header="Логин"
+                                                        Width="100"
+                                                        Binding="{Binding Login}" />
+                                    <DataGridTextColumn Header="Пароль"
+                                                        Width="100"
+                                                        Binding="{Binding Password}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </Grid>
-                    </TabItem>
+                    </Grid>
+                </TabItem>
 
-                </TabControl>
+            </TabControl>
 
                 <Grid Grid.Row="1"
                       Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="5*" />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-
+                    
                 <Button x:Name="Quit"
                         Content="Выход"
                         Grid.Column="0"
                         FontSize="25"
                         FontFamily="Sitka Display"
-                        Click="Quit_Click" />
+                        Click="Quit_Click"
+                        Width="160"
+                        HorizontalAlignment="Left"/>
 
             </Grid>
             </Grid>

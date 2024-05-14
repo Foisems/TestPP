@@ -38,7 +38,7 @@ namespace TestYourLearning.View
                 if (user != null)
                 {
                     isEnter = true;
-                    if (user.IdRole == 1)                                                                 // проверка роли пользователя 1-админ; 2-сотрудник
+                    if (user.IdRole == 1)                                                                 // проверка роли пользователя 1-админ; 2-преподаватель; 3-студент
                     {
                         mainWindow = new MainWindow(1, user.IdHuman);
 
@@ -60,6 +60,11 @@ namespace TestYourLearning.View
                     MessageBox.Show("Неверный логин или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Shutdown();
         }
     }
 }

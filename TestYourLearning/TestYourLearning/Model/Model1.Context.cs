@@ -40,6 +40,7 @@ namespace TestYourLearning.Model
         public virtual DbSet<ImageProfile> ImageProfile { get; set; }
         public virtual DbSet<Lecture> Lecture { get; set; }
         public virtual DbSet<Question> Question { get; set; }
+        public virtual DbSet<QuestionInTest> QuestionInTest { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Score> Score { get; set; }
         public virtual DbSet<Subject> Subject { get; set; }
