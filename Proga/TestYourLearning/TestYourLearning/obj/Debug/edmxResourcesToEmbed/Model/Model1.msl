@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище TestDBModelContainer" CdmEntityContainer="TestDBEntities">
+    <EntitySetMapping Name="Answer">
+      <EntityTypeMapping TypeName="TestDBModel.Answer">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnswerInQuestion">
+      <EntityTypeMapping TypeName="TestDBModel.AnswerInQuestion">
+        <MappingFragment StoreEntitySet="AnswerInQuestion">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdAnswer" ColumnName="IdAnswer" />
+          <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
+          <ScalarProperty Name="Correct" ColumnName="Correct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="TestDBModel.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdName" ColumnName="IdName" />
+          <ScalarProperty Name="IdIndex" ColumnName="IdIndex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupIndex">
+      <EntityTypeMapping TypeName="TestDBModel.GroupIndex">
+        <MappingFragment StoreEntitySet="GroupIndex">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupName">
+      <EntityTypeMapping TypeName="TestDBModel.GroupName">
+        <MappingFragment StoreEntitySet="GroupName">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Human">
+      <EntityTypeMapping TypeName="TestDBModel.Human">
+        <MappingFragment StoreEntitySet="Human">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+          <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageProfile">
+      <EntityTypeMapping TypeName="TestDBModel.ImageProfile">
+        <MappingFragment StoreEntitySet="ImageProfile">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lecture">
+      <EntityTypeMapping TypeName="TestDBModel.Lecture">
+        <MappingFragment StoreEntitySet="Lecture">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Lecture1" ColumnName="Lecture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="TestDBModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionInTest">
+      <EntityTypeMapping TypeName="TestDBModel.QuestionInTest">
+        <MappingFragment StoreEntitySet="QuestionInTest">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
+          <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="TestDBModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Score">
+      <EntityTypeMapping TypeName="TestDBModel.Score">
+        <MappingFragment StoreEntitySet="Score">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject">
+      <EntityTypeMapping TypeName="TestDBModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TestDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test">
+      <EntityTypeMapping TypeName="TestDBModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestScore">
+      <EntityTypeMapping TypeName="TestDBModel.TestScore">
+        <MappingFragment StoreEntitySet="TestScore">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+          <ScalarProperty Name="IdScore" ColumnName="IdScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="TestDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="IdHuman" ColumnName="IdHuman" />
+          <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

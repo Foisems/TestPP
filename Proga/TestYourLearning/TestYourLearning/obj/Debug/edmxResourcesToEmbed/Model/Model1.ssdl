@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище TestDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnswerInQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdAnswer" />
+      <PropertyRef Name="IdQuestion" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAnswer" Type="int" Nullable="false" />
+    <Property Name="IdQuestion" Type="int" Nullable="false" />
+    <Property Name="Correct" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdName" Type="int" Nullable="false" />
+    <Property Name="IdIndex" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupIndex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Index" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupName">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Human">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="100" />
+    <Property Name="IdGroup" Type="int" />
+    <Property Name="IdSubject" Type="int" />
+  </EntityType>
+  <EntityType Name="ImageProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lecture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSubject" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Lecture" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionInTest">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdQuestion" />
+      <PropertyRef Name="IdTest" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdQuestion" Type="int" Nullable="false" />
+    <Property Name="IdTest" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Score">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSubject" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestScore">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="IdTest" Type="int" Nullable="false" />
+    <Property Name="IdScore" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdRole" Type="int" Nullable="false" />
+    <Property Name="IdHuman" Type="int" Nullable="false" />
+    <Property Name="IdImage" Type="int" />
+  </EntityType>
+  <Association Name="FK_AnswerInQuestion_Answer">
+    <End Role="Answer" Type="Self.Answer" Multiplicity="1" />
+    <End Role="AnswerInQuestion" Type="Self.AnswerInQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Answer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AnswerInQuestion">
+        <PropertyRef Name="IdAnswer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnswerInQuestion_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="AnswerInQuestion" Type="Self.AnswerInQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AnswerInQuestion">
+        <PropertyRef Name="IdQuestion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_GroupIndex">
+    <End Role="GroupIndex" Type="Self.GroupIndex" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupIndex">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="IdIndex" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_GroupName">
+    <End Role="GroupName" Type="Self.GroupName" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupName">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="IdName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Human_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="Human" Type="Self.Human" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Human">
+        <PropertyRef Name="IdGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Human_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="Human" Type="Self.Human" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Human">
+        <PropertyRef Name="IdSubject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lecture_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Lecture" Type="Self.Lecture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lecture">
+        <PropertyRef Name="IdSubject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionInTest_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="QuestionInTest" Type="Self.QuestionInTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionInTest">
+        <PropertyRef Name="IdQuestion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionInTest_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="QuestionInTest" Type="Self.QuestionInTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionInTest">
+        <PropertyRef Name="IdTest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Test" Type="Self.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="IdSubject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestScore_Score">
+    <End Role="Score" Type="Self.Score" Multiplicity="1" />
+    <End Role="TestScore" Type="Self.TestScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Score">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestScore">
+        <PropertyRef Name="IdScore" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestScore_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="TestScore" Type="Self.TestScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestScore">
+        <PropertyRef Name="IdTest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestScore_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TestScore" Type="Self.TestScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestScore">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Human">
+    <End Role="Human" Type="Self.Human" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Human">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdHuman" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_ImageProfile">
+    <End Role="ImageProfile" Type="Self.ImageProfile" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище TestDBModelContainer">
+    <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnswerInQuestion" EntityType="Self.AnswerInQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupIndex" EntityType="Self.GroupIndex" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupName" EntityType="Self.GroupName" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Human" EntityType="Self.Human" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImageProfile" EntityType="Self.ImageProfile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lecture" EntityType="Self.Lecture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionInTest" EntityType="Self.QuestionInTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestScore" EntityType="Self.TestScore" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AnswerInQuestion_Answer" Association="Self.FK_AnswerInQuestion_Answer">
+      <End Role="Answer" EntitySet="Answer" />
+      <End Role="AnswerInQuestion" EntitySet="AnswerInQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnswerInQuestion_Question" Association="Self.FK_AnswerInQuestion_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="AnswerInQuestion" EntitySet="AnswerInQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_GroupIndex" Association="Self.FK_Group_GroupIndex">
+      <End Role="GroupIndex" EntitySet="GroupIndex" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_GroupName" Association="Self.FK_Group_GroupName">
+      <End Role="GroupName" EntitySet="GroupName" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Human_Group" Association="Self.FK_Human_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Human" EntitySet="Human" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Human_Subject" Association="Self.FK_Human_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Human" EntitySet="Human" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lecture_Subject" Association="Self.FK_Lecture_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Lecture" EntitySet="Lecture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionInTest_Question" Association="Self.FK_QuestionInTest_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="QuestionInTest" EntitySet="QuestionInTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionInTest_Test" Association="Self.FK_QuestionInTest_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="QuestionInTest" EntitySet="QuestionInTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Subject" Association="Self.FK_Test_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Test" EntitySet="Test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestScore_Score" Association="Self.FK_TestScore_Score">
+      <End Role="Score" EntitySet="Score" />
+      <End Role="TestScore" EntitySet="TestScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestScore_Test" Association="Self.FK_TestScore_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="TestScore" EntitySet="TestScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestScore_User" Association="Self.FK_TestScore_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="TestScore" EntitySet="TestScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Human" Association="Self.FK_User_Human">
+      <End Role="Human" EntitySet="Human" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_ImageProfile" Association="Self.FK_User_ImageProfile">
+      <End Role="ImageProfile" EntitySet="ImageProfile" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
